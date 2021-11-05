@@ -36,19 +36,23 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/jacobi.o \
-	${OBJECTDIR}/main.o
+	${OBJECTDIR}/main.o \
+	${OBJECTDIR}/solve.o
 
 # Test Directory
 TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 
 # Test Files
 TESTFILES= \
-	${TESTDIR}/TestFiles/f1
+	${TESTDIR}/TestFiles/f1 \
+	${TESTDIR}/TestFiles/f2
 
 # Test Object Files
 TESTOBJECTFILES= \
 	${TESTDIR}/tests/GetJacobian.o \
-	${TESTDIR}/tests/jacobiTestRunner.o
+	${TESTDIR}/tests/Solve.o \
+	${TESTDIR}/tests/jacobiTestRunner.o \
+	${TESTDIR}/tests/solveTestRunner.o
 
 # C Compiler Flags
 CFLAGS=
@@ -84,6 +88,11 @@ ${OBJECTDIR}/main.o: main.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
+${OBJECTDIR}/solve.o: solve.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/solve.o solve.cpp
+
 # Subprojects
 .build-subprojects:
 
@@ -94,6 +103,10 @@ ${OBJECTDIR}/main.o: main.cpp
 ${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/GetJacobian.o ${TESTDIR}/tests/jacobiTestRunner.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc} -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS}   `cppunit-config --libs`   
+
+${TESTDIR}/TestFiles/f2: ${TESTDIR}/tests/Solve.o ${TESTDIR}/tests/solveTestRunner.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.cc} -o ${TESTDIR}/TestFiles/f2 $^ ${LDLIBSOPTIONS}   `cppunit-config --libs`   
 
 
 ${TESTDIR}/tests/GetJacobian.o: tests/GetJacobian.cpp 
@@ -106,6 +119,18 @@ ${TESTDIR}/tests/jacobiTestRunner.o: tests/jacobiTestRunner.cpp
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/jacobiTestRunner.o tests/jacobiTestRunner.cpp
+
+
+${TESTDIR}/tests/Solve.o: tests/Solve.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/Solve.o tests/Solve.cpp
+
+
+${TESTDIR}/tests/solveTestRunner.o: tests/solveTestRunner.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/solveTestRunner.o tests/solveTestRunner.cpp
 
 
 ${OBJECTDIR}/jacobi_nomain.o: ${OBJECTDIR}/jacobi.o jacobi.cpp 
@@ -134,11 +159,25 @@ ${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o main.cpp
 	    ${CP} ${OBJECTDIR}/main.o ${OBJECTDIR}/main_nomain.o;\
 	fi
 
+${OBJECTDIR}/solve_nomain.o: ${OBJECTDIR}/solve.o solve.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/solve.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/solve_nomain.o solve.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/solve.o ${OBJECTDIR}/solve_nomain.o;\
+	fi
+
 # Run Test Targets
 .test-conf:
 	@if [ "${TEST}" = "" ]; \
 	then  \
 	    ${TESTDIR}/TestFiles/f1 || true; \
+	    ${TESTDIR}/TestFiles/f2 || true; \
 	else  \
 	    ./${TEST} || true; \
 	fi

@@ -5,6 +5,7 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>jacobi.h</itemPath>
+      <itemPath>solve.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -15,6 +16,7 @@
                    projectFiles="true">
       <itemPath>jacobi.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
+      <itemPath>solve.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -27,6 +29,11 @@
         <itemPath>tests/GetJacobian.cpp</itemPath>
         <itemPath>tests/GetJacobian.h</itemPath>
         <itemPath>tests/jacobiTestRunner.cpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f2" displayName="solve" projectFiles="true" kind="TEST">
+        <itemPath>tests/Solve.cpp</itemPath>
+        <itemPath>tests/Solve.h</itemPath>
+        <itemPath>tests/solveTestRunner.cpp</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
@@ -64,17 +71,41 @@
           <output>${TESTDIR}/TestFiles/f1</output>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f2">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f2</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
       <item path="jacobi.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="jacobi.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="solve.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="solve.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="tests/GetJacobian.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/GetJacobian.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="tests/Solve.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/Solve.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="tests/jacobiTestRunner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/solveTestRunner.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -111,17 +142,41 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f2">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f2</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
       <item path="jacobi.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="jacobi.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="solve.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="solve.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="tests/GetJacobian.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/GetJacobian.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="tests/Solve.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/Solve.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="tests/jacobiTestRunner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/solveTestRunner.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>
