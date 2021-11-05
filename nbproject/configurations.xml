@@ -5,6 +5,7 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>jacobi.h</itemPath>
+      <itemPath>root.h</itemPath>
       <itemPath>solve.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -16,12 +17,18 @@
                    projectFiles="true">
       <itemPath>jacobi.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
+      <itemPath>root.cpp</itemPath>
       <itemPath>solve.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
                    projectFiles="false"
                    kind="TEST_LOGICAL_FOLDER">
+      <logicalFolder name="f3" displayName="findRoot" projectFiles="true" kind="TEST">
+        <itemPath>tests/FindRoot.cpp</itemPath>
+        <itemPath>tests/FindRoot.h</itemPath>
+        <itemPath>tests/rootTestRunner.cpp</itemPath>
+      </logicalFolder>
       <logicalFolder name="f1"
                      displayName="getJacobian"
                      projectFiles="true"
@@ -85,15 +92,37 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f3">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f3</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
       <item path="jacobi.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="jacobi.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="root.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="root.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="solve.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="solve.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/FindRoot.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/FindRoot.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/GetJacobian.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -104,6 +133,8 @@
       <item path="tests/Solve.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/jacobiTestRunner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/rootTestRunner.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/solveTestRunner.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -156,15 +187,37 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f3">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f3</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
       <item path="jacobi.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="jacobi.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="root.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="root.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="solve.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="solve.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/FindRoot.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/FindRoot.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/GetJacobian.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -175,6 +228,8 @@
       <item path="tests/Solve.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/jacobiTestRunner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/rootTestRunner.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/solveTestRunner.cpp" ex="false" tool="1" flavor2="0">
       </item>
