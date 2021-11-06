@@ -30,7 +30,7 @@ void FindRoot::testFindRoot() {
 
     std::vector<double> initialGuess({10, 100, 0});
     const double h = pow(10, -6);
-    double epsilon = pow(10, -6);
+    double epsilon = pow(10, -12);
     int maxIterations = 500;
      
     std::vector<double> result = findRoot(initialGuess, F, maxIterations, epsilon, h);
@@ -40,3 +40,10 @@ void FindRoot::testFindRoot() {
     CPPUNIT_ASSERT_DOUBLES_EQUAL(-1, result.at(2), pow(10, -6));
 }
 
+void FindRoot::testGetNorm() {
+    std::vector<double> x({1, 2, -3, 1, -1});
+
+    double norm = getNorm(x);
+
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(4, norm, pow(10, -8));
+}

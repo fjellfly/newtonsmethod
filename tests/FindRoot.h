@@ -20,6 +20,7 @@ class FindRoot : public CPPUNIT_NS::TestFixture {
     CPPUNIT_TEST_SUITE(FindRoot);
 
     CPPUNIT_TEST(testFindRoot);
+    CPPUNIT_TEST(testGetNorm);
 
     CPPUNIT_TEST_SUITE_END();
 
@@ -31,6 +32,7 @@ public:
 
 private:
     void testFindRoot();
+    void testGetNorm();
 
 };
 

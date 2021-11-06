@@ -1,12 +1,21 @@
 #include <algorithm>
 #include <functional>
 #include <stdexcept>
+#include <math.h>
 
 #include "jacobi.h"
 #include "solve.h"
 #include "root.h"
 
 using namespace std;
+
+double getNorm(vector<double> v) {
+    double sum = 0;
+    for (int i = 0; i < v.size(); i++) {
+        sum += pow(v.at(i),2);
+    }
+    return sqrt(sum);
+}
 
 vector<double> findRoot(vector<double> initialGuess, function<vector<double> (vector<double>)> F, int maxIterations, double epsilon, double h) {
     
@@ -25,6 +34,11 @@ vector<double> findRoot(vector<double> initialGuess, function<vector<double> (ve
             throw invalid_argument("Upper triangle jacobians are supported only");
         }
         transform(x.begin(), x.end(), deltaX.begin(), x.begin(), minus<double>());
+
+        double norm = getNorm(F(x));
+        if (norm < epsilon) {
+            break;
+        }
     }
 
     return x;
