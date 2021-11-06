@@ -1,3 +1,5 @@
+#include <stdexcept>
+
 #include "solve.h"
 
 using namespace std;
@@ -11,6 +13,11 @@ vector<double> solve(vector<vector<double>> matrix, vector<double> targetValue) 
         double numerator = targetValue.at(i);
 
         // Iterate columns
+        for (int j = 0; j < i; j++) {
+            if(matrix.at(i).at(j) != 0) {
+                throw std::invalid_argument("Input matrix isn't an upper triangle matrix");
+            }
+        }
         for (int j = i + 1; j < targetValue.size(); j++) {
             numerator -= matrix.at(i).at(j) * solution.at(j);
         }

@@ -45,3 +45,12 @@ void Solve::testSolve4D() {
     CPPUNIT_ASSERT_DOUBLES_EQUAL(5, result.at(2), std::pow(10, -8));
     CPPUNIT_ASSERT_DOUBLES_EQUAL(3, result.at(3), std::pow(10, -8));
 }
+
+void Solve::testSolveExpectUpperTriangleMatrix() {
+    std::vector<std::vector<double>> matrix({
+        {0, 0, 1}, {0, 1, 0}, {1, 0, 0}
+    });
+    std::vector<double> targetValue({5, 1, 2});
+
+    CPPUNIT_ASSERT_THROW(solve(matrix, targetValue), std::invalid_argument);
+}
