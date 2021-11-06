@@ -4,12 +4,19 @@ using namespace std;
 
 vector<double> solve(vector<vector<double>> matrix, vector<double> targetValue) {
     vector<double> solution(targetValue.size());
+
+    // Iterate rows of matrix, start at the bottom
+    for (int i = targetValue.size() - 1; i >= 0; i--) {
+
+        double numerator = targetValue.at(i);
+
+        // Iterate columns
+        for (int j = i + 1; j < targetValue.size(); j++) {
+            numerator -= matrix.at(i).at(j) * solution.at(j);
+        }
+        solution.at(i) = numerator / matrix.at(i).at(i);
+    }
     
-    // Assume dimension to be 3    
-    solution.at(2) = targetValue.at(2) / matrix.at(2).at(2);
-    solution.at(1) = (targetValue.at(1) - matrix.at(1).at(2) * solution.at(2)) / matrix.at(1).at(1);
-    solution.at(0) = (targetValue.at(0) - matrix.at(0).at(1) * solution.at(1) - matrix.at(0).at(2) * solution.at(2)) / matrix.at(0).at(0);
-            
     return solution;
 }
 
