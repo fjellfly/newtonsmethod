@@ -33,11 +33,11 @@ void FindRoot::testFindRoot() {
     double epsilon = pow(10, -12);
     int maxIterations = 500;
      
-    std::vector<double> result = findRoot(initialGuess, F, maxIterations, epsilon, h);
+    FindRootResult result = findRoot(initialGuess, F, maxIterations, epsilon, h);
     
-    CPPUNIT_ASSERT_DOUBLES_EQUAL(sqrt(50), result.at(0), pow(10, -6));
-    CPPUNIT_ASSERT_DOUBLES_EQUAL(50, result.at(1), pow(10, -6));
-    CPPUNIT_ASSERT_DOUBLES_EQUAL(-1, result.at(2), pow(10, -6));
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(sqrt(50), result.x.at(0), pow(10, -6));
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(50, result.x.at(1), pow(10, -6));
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(-1, result.x.at(2), pow(10, -6));
 }
 
 void FindRoot::testGetNorm() {

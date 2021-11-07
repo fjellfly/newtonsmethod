@@ -31,9 +31,10 @@ int main() {
     double epsilon = pow(10, -6);
     int maxIterations = 100;
 
-    vector<double> result = findRoot(initialGuess, F, maxIterations, epsilon, h);
-    
-    cout << "(" << vectorToString(result) << ")" << endl;
+    FindRootResult result = findRoot(initialGuess, F, maxIterations, epsilon, h);
+
+    cout << "F({" << vectorToString(result.x) << "}) = {"<< vectorToString(F(result.x)) << "}" << endl;
+    cout << "Solution found after " << result.iteration << " iterations" << endl;
 
     return 0;
 }

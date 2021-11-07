@@ -9,6 +9,11 @@
 
 using namespace std;
 
+FindRootResult::FindRootResult(vector<double> x, int iteration) {
+    this->x = x;
+    this->iteration = iteration;
+}
+
 double getNorm(vector<double> v) {
     double sum = 0;
     for (int i = 0; i < v.size(); i++) {
@@ -17,7 +22,7 @@ double getNorm(vector<double> v) {
     return sqrt(sum);
 }
 
-vector<double> findRoot(vector<double> initialGuess, function<vector<double> (vector<double>)> F, int maxIterations, double epsilon, double h) {
+FindRootResult findRoot(vector<double> initialGuess, function<vector<double> (vector<double>)> F, int maxIterations, double epsilon, double h) {
     
     int dimensions = initialGuess.size();
 
@@ -37,9 +42,11 @@ vector<double> findRoot(vector<double> initialGuess, function<vector<double> (ve
 
         double norm = getNorm(F(x));
         if (norm < epsilon) {
-            break;
+            FindRootResult findRootResult(x, iteration);
+            return findRootResult;
         }
     }
 
-    return x;
+    FindRootResult findRootResult(x, maxIterations);
+    return findRootResult;
 }
